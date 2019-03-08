@@ -17,3 +17,12 @@ cache:
   directories:
     - node_modules
 
+install:
+  - npm install
+  - npm i -g react-deploy-cli
+  - npm run build
+
+before_install:
+  - export RELEASE_HEAD=$(git rev-parse --short HEAD | cut -c1-7)
+  - export RELEASE_HEAD_LONG=$(git rev-parse HEAD)
+  - export CI=false
