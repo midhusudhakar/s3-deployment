@@ -2,36 +2,29 @@
 sudo: required
 dist: trusty
 language: node_js
-
 node_js:
   # LTS version
-  - "8.10"
-
+  - "8.0"
 notifications:
   email:
-    on_success: change 
-    on_failure: always
-    recipients: 
-      - midhun@zeefasys.com
+    on_success: change # only if status change from fail to success
+    on_failure: always # if there is a fail
+    recipients:
+      - sumn2u@gmail.com
 cache:
   directories:
     - node_modules
-
 install:
   - npm install
   - npm i -g react-deploy-cli
-  - npm run build
-
-before_install:
-  - export RELEASE_HEAD=$(git rev-parse --short HEAD | cut -c1-7)
-  - export RELEASE_HEAD_LONG=$(git rev-parse HEAD)
+  - npm run build #use your build script
+before_script:
+  - export RELEASE_HEAD=$(git rev-parse --short HEAD | cut -c1-7)  
+  - export RELEASE_HEAD_LONG=$(git rev-parse HEAD)  
   - export CI=false
-
 deploy:
   skip_cleanup: true
-  provider: scrip
+  provider: script
   script: react-deploy deploy $TRAVIS_BRANCH && react-deploy list $TRAVIS_BRANCH && react-deploy activate $RELEASE_HEAD $TRAVIS_BRANCH
   on:
     branch: ["master"]
-
-
