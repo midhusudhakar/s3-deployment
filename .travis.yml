@@ -30,7 +30,7 @@ before_install:
 deploy:
   skip_cleanup: true
   provider: scrip
-  script: react-deploy deploy $TRAVIS_BRANCH && react_deploy list $TRAVIS_BRANCH && react_deploy activate $RELAESE_HEAD $TRAVIS_BRANCH
+  script: react-deploy deploy $TRAVIS_BRANCH && react-deploy list $TRAVIS_BRANCH && react-deploy activate $RELEASE_HEAD $TRAVIS_BRANCH
   on:
     branch: ["master"]
 
