@@ -26,3 +26,12 @@ before_install:
   - export RELEASE_HEAD=$(git rev-parse --short HEAD | cut -c1-7)
   - export RELEASE_HEAD_LONG=$(git rev-parse HEAD)
   - export CI=false
+
+deploy:
+  skip_cleanup: true
+  provider: scrip
+  script: react-deploy deploy $TRAVIS_BRANCH && react_deploy list $TRAVIS_BRANCH && react_deploy activate $RELAESE_HEAD $TRAVIS_BRANCH
+  on:
+    branch: ["master"]
+
+
