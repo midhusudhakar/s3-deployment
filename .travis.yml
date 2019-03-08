@@ -1,0 +1,19 @@
+---
+sudo: required
+dist: trusty
+language: node_js
+
+node_js:
+  # LTS version
+  - "8.10"
+
+notifications:
+  email:
+    on_success: change 
+    on_failure: always
+    recipients: 
+      - midhun@zeefasys.com
+cache:
+  directories:
+    - node_modules
+
